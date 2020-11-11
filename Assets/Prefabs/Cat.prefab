@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7325526479473217994}
   - component: {fileID: 7325526479473217997}
   - component: {fileID: 7325526479473217995}
+  - component: {fileID: 1817837642}
   m_Layer: 0
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,11 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dog: {fileID: 0}
-  movementSpeed: 2.5
-  stateChangeDelay: 2
+  movementSpeed: 1
+  stateChangeDelay: 5
   chaseThreshold: 3
   xRange: {x: -12, y: 12}
   yRange: {x: -5, y: 5}
+  annoyingness: 0
+  insideZone: 0
 --- !u!212 &7325526479473217997
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,3 +126,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1817837642
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325526479473217999}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3

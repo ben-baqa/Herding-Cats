@@ -25,6 +25,11 @@ public class CatMovement : MonoBehaviour
     public Vector2 xRange;
     public Vector2 yRange;
 
+    [Header("Behaviour")]
+    public float annoyingness;
+
+    [HideInInspector]
+    public bool insideZone = false;
     //Internal References/Variables
     private Animator anim;
     private Rigidbody2D rb;
@@ -37,6 +42,10 @@ public class CatMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         state = CatState.GotoRandomLocation;
+    }
+
+    void AdjustTime() {
+        timeToChangeState = Time.time + stateChangeDelay * Random.Range(0.8f, 1.2f);
     }
 
     // Update is called once per frame
@@ -57,8 +66,8 @@ public class CatMovement : MonoBehaviour
                 target = currentRandomTarget;
                 if (Time.time > timeToChangeState)
                 {
+                    AdjustTime();
                     //TODO set target to the randomly decided location
-                    timeToChangeState = Time.time + stateChangeDelay;
                     state = CatState.Idle;
                 }
                 break;
@@ -67,9 +76,11 @@ public class CatMovement : MonoBehaviour
                 target = transform.position;
                 if (Time.time > timeToChangeState)
                 {
-                    SetNewRandomLocation();
-                    timeToChangeState = Time.time + stateChangeDelay;
-                    state = CatState.GotoRandomLocation;
+                    AdjustTime();
+                    if(Random.Range(0f, 1f) < annoyingness) {
+                        SetNewRandomLocation();
+                        state = CatState.GotoRandomLocation;
+                    }
                 }
                 break;
 
@@ -77,9 +88,9 @@ public class CatMovement : MonoBehaviour
                 //if the cat is far enough away from teh dog, stop running and wander-
                 if ((dogLoc - catLoc).magnitude > chaseThreshold)
                 {
-                    SetNewRandomLocation();
-                    timeToChangeState = Time.time + stateChangeDelay;
-                    state = CatState.GotoRandomLocation;
+                    // SetNewRandomLocation();
+                    AdjustTime();
+                    state = CatState.Idle;
                 }
                 target = catLoc + (catLoc - dogLoc) * movementSpeed / (catLoc - dogLoc).magnitude;
                 break;
