@@ -4,37 +4,29 @@ using UnityEngine;
 
 public class DogMovement : MonoBehaviour
 {
+    public float speed = 5;
+    private Vector2 dir = new Vector2(-1, 0);
     Animator animator;
+    Rigidbody2D rbody;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        rbody = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);
+        var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-         if (Input.GetKey(KeyCode.A)) {
-             rb.AddForce(Vector3.left);
-             movement.x = -1.0f;
-         }
-         if (Input.GetKey(KeyCode.D)) {
-             rb.AddForce(Vector3.right);
-             movement.x = 1.0f;
-         }
-         if (Input.GetKey(KeyCode.W)) {
-             rb.AddForce(Vector3.up);
-             movement.y = 1.0f;
-         }
-         if (Input.GetKey(KeyCode.S)) {
-             rb.AddForce(Vector3.down);  
-             movement.y = -1.0f;
-         }
+        if(input.magnitude != 0)
+            dir = input;
 
-         animator.SetFloat("Vertical", movement.y);
-         animator.SetFloat("Horizontal", movement.x);
-         animator.SetFloat("Magnitude", movement.magnitude);
+        rbody.velocity = input * speed;
+
+        animator.SetFloat("Vertical", dir.y);
+        animator.SetFloat("Horizontal", dir.x);
+        animator.SetFloat("Magnitude", dir.magnitude);
     }
 }
