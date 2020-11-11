@@ -5,7 +5,7 @@ using UnityEngine;
 public enum CatState
 {
     Idle,
-    GotoRandomLocation,
+    Walk,
     RunningAway
 }
 
@@ -34,14 +34,18 @@ public class CatMovement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private CatState state;
+    private SpriteRenderer spriteRenderer;
+    private Sprite sprite;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        sprite = spriteRenderer.sprite;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        state = CatState.GotoRandomLocation;
+        state = CatState.Walk;
     }
 
     void AdjustTime() {
@@ -62,7 +66,7 @@ public class CatMovement : MonoBehaviour
         //set the target location based on state
         switch (state)
         {
-            case CatState.GotoRandomLocation:
+            case CatState.Walk:
                 target = currentRandomTarget;
                 if (Time.time > timeToChangeState)
                 {
@@ -79,7 +83,7 @@ public class CatMovement : MonoBehaviour
                     AdjustTime();
                     if(Random.Range(0f, 1f) < annoyingness) {
                         SetNewRandomLocation();
-                        state = CatState.GotoRandomLocation;
+                        state = CatState.Walk;
                     }
                 }
                 break;
@@ -96,6 +100,17 @@ public class CatMovement : MonoBehaviour
                 break;
         }
         UpdateAnimator();
+
+        if (state != CatState.Idle) {
+            sprite = spriteRenderer.sprite;
+        }
+    }
+
+    public void LateUpdate() {
+        if (state == CatState.Idle) {
+            spriteRenderer.sprite = sprite;
+        }
+    
     }
 
     private void SetNewRandomLocation()
@@ -125,6 +140,20 @@ public class CatMovement : MonoBehaviour
         else {
             rb.velocity = Vector2.zero;
         }
+
+        switch (state)
+        {
+            case CatState.Walk:
+                anim.SetFloat("SpeedMult", 0.5f);
+                break;
+            case CatState.RunningAway:
+                anim.SetFloat("SpeedMult", 1.0f);
+                break;
+        }
+
+         anim.SetFloat("Vertical", rb.velocity.y);
+         anim.SetFloat("Horizontal", rb.velocity.x);
+         anim.SetFloat("Magnitude", rb.velocity.magnitude);
     }
 
     public CatState GetCatState() {
