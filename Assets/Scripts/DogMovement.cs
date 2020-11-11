@@ -27,6 +27,6 @@ public class DogMovement : MonoBehaviour
 
         animator.SetFloat("Vertical", dir.y);
         animator.SetFloat("Horizontal", dir.x);
-        animator.SetFloat("Magnitude", dir.magnitude);
+        animator.SetFloat("Magnitude", input.magnitude);
     }
 }

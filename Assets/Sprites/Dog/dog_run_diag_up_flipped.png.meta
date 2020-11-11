@@ -1,31 +1,46 @@
 fileFormatVersion: 2
-guid: 0cf51a805fa044caea8954bc3934ebb4
+guid: 4923386d0804349bbaa1ed55c9aaa6a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 626447445592723349
-    second: dog_run_lat_0
+      213: -4406974073924755762
+    second: dog_run_diag_up_flipped_0
   - first:
-      213: -4472030629100119101
-    second: dog_run_lat_1
+      213: -1841519040954172817
+    second: dog_run_diag_up_flipped_1
   - first:
-      213: 7794165169971082668
-    second: dog_run_lat_2
+      213: -6701988344713999666
+    second: dog_run_diag_up_flipped_2
   - first:
-      213: 1588083868189297220
-    second: dog_run_lat_3
+      213: 907448870962121562
+    second: dog_run_diag_up_flipped_3
   - first:
-      213: 2107267260086402968
-    second: dog_run_lat_4
+      213: -4862005517486549437
+    second: dog_run_diag_up_flipped_4
   - first:
-      213: -2995399121054084373
-    second: dog_run_lat_5
+      213: -6953133648281513212
+    second: dog_run_diag_up_flipped_5
   - first:
-      213: 7557599668788537254
-    second: dog_run_lat_6
+      213: -3370126181351977413
+    second: dog_run_diag_up_flipped_0
   - first:
-      213: -8751298039484343666
-    second: dog_run_lat_7
+      213: 6392834385180739299
+    second: dog_run_diag_up_flipped_1
+  - first:
+      213: 5813552519615046604
+    second: dog_run_diag_up_flipped_2
+  - first:
+      213: 8229624530038564392
+    second: dog_run_diag_up_flipped_3
+  - first:
+      213: -9183514329444442756
+    second: dog_run_diag_up_flipped_4
+  - first:
+      213: -1702386492371651610
+    second: dog_run_diag_up_flipped_5
+  - first:
+      213: -4510586456050113076
+    second: dog_run_diag_up_flipped_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,209 +122,152 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dog_run_lat_0
+      name: dog_run_diag_up_flipped_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f4109f1a691b800800000000000000
-      internalID: 626447445592723349
+      spriteID: b3e85400818ea31d0800000000000000
+      internalID: -3370126181351977413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dog_run_lat_1
+      name: dog_run_diag_up_flipped_1
       rect:
         serializedVersion: 2
-        x: 65
+        x: 32
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cb12df26d720f1c0800000000000000
-      internalID: -4472030629100119101
+      spriteID: 3e6c99ca009e7b850800000000000000
+      internalID: 6392834385180739299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dog_run_lat_2
+      name: dog_run_diag_up_flipped_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc36bbe0733eda050800000000000000
+      internalID: 5813552519615046604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dog_run_diag_up_flipped_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8262acb58ef753270800000000000000
+      internalID: 8229624530038564392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dog_run_diag_up_flipped_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca539d44def6a2c60800000000000000
-      internalID: 7794165169971082668
+      spriteID: c7d11cbaf5a9d8080800000000000000
+      internalID: -9183514329444442756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dog_run_lat_3
+      name: dog_run_diag_up_flipped_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3b3cb3188ef58e0800000000000000
+      internalID: -1702386492371651610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dog_run_diag_up_flipped_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44a83f43dd10a0610800000000000000
-      internalID: 1588083868189297220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dog_run_lat_4
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89fb24488648e3d10800000000000000
-      internalID: 2107267260086402968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dog_run_lat_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be2dd05ae543e66d0800000000000000
-      internalID: -2995399121054084373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dog_run_lat_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a720cc5bdcf1e860800000000000000
-      internalID: 7557599668788537254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dog_run_lat_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8a96f8acc42d8680800000000000000
-      internalID: -8751298039484343666
+      spriteID: cc5e17e248d2761c0800000000000000
+      internalID: -4510586456050113076
       vertices: []
       indices: 
       edges: []
