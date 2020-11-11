@@ -5,7 +5,7 @@ using UnityEngine;
 public enum CatState
 {
     Idle,
-    GotoRandomLocation,
+    Walk,
     RunningAway
 }
 
@@ -40,7 +40,7 @@ public class CatMovement : MonoBehaviour
         sprite = spriteRenderer.sprite;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        state = CatState.GotoRandomLocation;
+        state = CatState.Walk;
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class CatMovement : MonoBehaviour
         //set the target location based on state
         switch (state)
         {
-            case CatState.GotoRandomLocation:
+            case CatState.Walk:
                 target = currentRandomTarget;
                 if (Time.time > timeToChangeState)
                 {
@@ -73,7 +73,7 @@ public class CatMovement : MonoBehaviour
                 {
                     SetNewRandomLocation();
                     timeToChangeState = Time.time + stateChangeDelay;
-                    state = CatState.GotoRandomLocation;
+                    state = CatState.Walk;
                 }
                 break;
 
@@ -83,7 +83,7 @@ public class CatMovement : MonoBehaviour
                 {
                     SetNewRandomLocation();
                     timeToChangeState = Time.time + stateChangeDelay;
-                    state = CatState.GotoRandomLocation;
+                    state = CatState.Walk;
                 }
                 target = catLoc + (catLoc - dogLoc) * movementSpeed / (catLoc - dogLoc).magnitude;
                 break;
@@ -115,13 +115,23 @@ public class CatMovement : MonoBehaviour
         //TODO change the cat bool flags based on it's current x and y velocity
         //query rb.velocity.x and rb.velocity.y
         Vector2 distance = target - (Vector2)transform.position;
-        if (state == CatState.GotoRandomLocation)
+        if (state == CatState.Walk)
         {
             rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
         }
         else
         {
             rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 1.6f * movementSpeed / distance.magnitude : 0);
+        }
+
+        switch (state)
+        {
+            case CatState.Walk:
+                anim.SetFloat("SpeedMult", 0.5f);
+                break;
+            case CatState.RunningAway:
+                anim.SetFloat("SpeedMult", 1.0f);
+                break;
         }
 
          anim.SetFloat("Vertical", rb.velocity.y);
