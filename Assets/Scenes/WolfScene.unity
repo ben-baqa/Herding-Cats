@@ -129,11 +129,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 162662014}
-  - component: {fileID: 162662013}
-  - component: {fileID: 162662015}
+  - component: {fileID: 360884984}
+  - component: {fileID: 360884983}
   m_Layer: 0
-  m_Name: FakeDog
+  m_Name: Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
