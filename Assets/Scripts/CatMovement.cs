@@ -111,13 +111,19 @@ public class CatMovement : MonoBehaviour
         //TODO change the cat bool flags based on it's current x and y velocity
         //query rb.velocity.x and rb.velocity.y
         Vector2 distance = target - (Vector2)transform.position;
-        if (state == CatState.GotoRandomLocation)
+        if (distance.magnitude > 0)
         {
-            rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
+            if (state == CatState.GotoRandomLocation)
+            {
+                rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
+            }
+            else
+            {
+                rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 1.6f * movementSpeed / distance.magnitude : 0);
+            }
         }
-        else
-        {
-            rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 1.6f * movementSpeed / distance.magnitude : 0);
+        else {
+            rb.velocity = Vector2.zero;
         }
     }
 
