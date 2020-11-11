@@ -29,11 +29,15 @@ public class CatMovement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private CatState state;
+    private SpriteRenderer spriteRenderer;
+    private Sprite sprite;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        sprite = spriteRenderer.sprite;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         state = CatState.GotoRandomLocation;
@@ -85,6 +89,17 @@ public class CatMovement : MonoBehaviour
                 break;
         }
         UpdateAnimator();
+
+        if (state != CatState.Idle) {
+            sprite = spriteRenderer.sprite;
+        }
+    }
+
+    public void LateUpdate() {
+        if (state == CatState.Idle) {
+            spriteRenderer.sprite = sprite;
+        }
+    
     }
 
     private void SetNewRandomLocation()
@@ -108,6 +123,10 @@ public class CatMovement : MonoBehaviour
         {
             rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 1.6f * movementSpeed / distance.magnitude : 0);
         }
+
+         anim.SetFloat("Vertical", rb.velocity.y);
+         anim.SetFloat("Horizontal", rb.velocity.x);
+         anim.SetFloat("Magnitude", rb.velocity.magnitude);
     }
 
     public CatState GetCatState() {
