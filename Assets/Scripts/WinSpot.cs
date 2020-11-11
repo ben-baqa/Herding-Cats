@@ -11,6 +11,7 @@ public class WinSpot : MonoBehaviour
     private GameObject[] allCats;
     public List<GameObject> containedCats;
     public Text catLabel;
+    public Text timerLabel;
 
     public float timer = 0f;
     private GameObject player;
@@ -62,6 +63,8 @@ public class WinSpot : MonoBehaviour
         }
 
         catLabel.text = containedCats.Count + " / " + allCats.Length;
-    }
 
+        timerLabel.gameObject.SetActive(!hasWon && allCats.Length == containedCats.Count && (timer % 1.0f < 0.75f));
+        timerLabel.text = Mathf.Ceil(10f - timer) + "s";
+    }
 }

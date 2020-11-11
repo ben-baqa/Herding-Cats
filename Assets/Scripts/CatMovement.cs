@@ -128,7 +128,7 @@ public class CatMovement : MonoBehaviour
         Vector2 distance = target - (Vector2)transform.position;
         if (distance.magnitude > 0)
         {
-            if (state == CatState.GotoRandomLocation)
+            if (state == CatState.Walk)
             {
                 rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
             }
