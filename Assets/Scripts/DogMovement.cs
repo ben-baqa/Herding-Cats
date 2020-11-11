@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DogMovement : MonoBehaviour
 {
-    public float speed = 5;
+    public Vector2 speed = new Vector2(5, 3.5f);
     private Vector2 dir = new Vector2(-1, 0);
     Animator animator;
     Rigidbody2D rbody;
@@ -23,7 +23,7 @@ public class DogMovement : MonoBehaviour
         if(input.magnitude != 0)
             dir = input;
 
-        rbody.velocity = input * speed;
+        rbody.velocity = new Vector2(input.x * speed.x, input.y * speed.y);
 
         animator.SetFloat("Vertical", dir.y);
         animator.SetFloat("Horizontal", dir.x);

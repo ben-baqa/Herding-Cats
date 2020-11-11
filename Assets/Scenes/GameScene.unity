@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -139.59998, y: 82.399994}
-  m_SizeDelta: {x: -293.0406, y: -164.84503}
+  m_AnchoredPosition: {x: -139.59998, y: 103.07001}
+  m_SizeDelta: {x: -293.0406, y: -206.18903}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &50895554
 MonoBehaviour:
@@ -296,8 +296,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4, y: 6.80215}
+  m_Offset: {x: -0.26959637, y: 0.22847484}
+  m_Size: {x: 1.051411, y: 3.7696326}
   m_Direction: 0
 --- !u!4 &231009510
 Transform:
@@ -652,6 +652,11 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8253018475750847842, guid: 4dd702e0cc20d409f857cc5310296d7d,
+        type: 3}
+      propertyPath: speed.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dd702e0cc20d409f857cc5310296d7d, type: 3}
 --- !u!1 &904989017
@@ -707,7 +712,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 360, y: 240}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -721,7 +726,7 @@ Canvas:
   m_GameObject: {fileID: 904989017}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1144743893}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -935,11 +940,11 @@ MonoBehaviour:
   m_AssetsPPU: 32
   m_RefResolutionX: 360
   m_RefResolutionY: 240
-  m_UpscaleRT: 0
+  m_UpscaleRT: 1
   m_PixelSnapping: 1
   m_CropFrameX: 1
   m_CropFrameY: 1
-  m_StretchFill: 1
+  m_StretchFill: 0
 --- !u!1 &1430998293 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8253018475750847840, guid: 4dd702e0cc20d409f857cc5310296d7d,

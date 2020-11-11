@@ -143,17 +143,22 @@ public class CatMovement : MonoBehaviour
 
         switch (state)
         {
+            case CatState.Idle:
+                if (rb.velocity.magnitude > 0) {
+                    anim.SetFloat("SpeedMult", 0.2f);
+                }
+                break;
             case CatState.Walk:
-                anim.SetFloat("SpeedMult", 0.5f);
+                anim.SetFloat("SpeedMult", 0.3f);
                 break;
             case CatState.RunningAway:
-                anim.SetFloat("SpeedMult", 1.0f);
+                anim.SetFloat("SpeedMult", 0.5f);
                 break;
         }
 
-         anim.SetFloat("Vertical", rb.velocity.y);
-         anim.SetFloat("Horizontal", rb.velocity.x);
-         anim.SetFloat("Magnitude", rb.velocity.magnitude);
+        anim.SetFloat("Vertical", rb.velocity.y);
+        anim.SetFloat("Horizontal", rb.velocity.x);
+        anim.SetFloat("Magnitude", rb.velocity.magnitude);
     }
 
     public CatState GetCatState() {
