@@ -155,7 +155,8 @@ MonoBehaviour:
   cat: {fileID: 1817837641}
   movementSpeed: 2
   stateChangeDelay: 2
-  catchCooldown: 10
+  catchCooldown: 6
+  huntTime: 2
   chaseThreshold: 3
   xRange: {x: -12, y: 12}
   yRange: {x: -5, y: 5}
