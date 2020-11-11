@@ -49,10 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dog: {fileID: 0}
   movementSpeed: 1
-  stateChangeDelay: 5
-  chaseThreshold: 3
-  xRange: {x: -12, y: 12}
-  yRange: {x: -5, y: 5}
+  stateChangeDelay: 3
+  chaseThreshold: 2
+  xRange: {x: -5.75, y: 5.75}
+  yRange: {x: -3.75, y: 3.75}
   annoyingness: 0
   insideZone: 0
 --- !u!50 &1264707046849380468
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264707046849380464}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -75,7 +75,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1817837642
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.1
 --- !u!212 &7325526479473217997
 SpriteRenderer:
   m_ObjectHideFlags: 0
