@@ -14,8 +14,7 @@ public class CatMovement : MonoBehaviour {
     public GameObject dog;
 
     [Header("Movement Variables")]
-    public Vector2 movementForce;
-    public Vector2 maxVelocity;
+    public float movementSpeed;
     private Vector2 target;         //coordinates the cat is attempting to move towards
     public float stateChangeDelay;
     public float chaseThreshold;    //distance dog has to be to chase this cat
@@ -30,6 +29,7 @@ public class CatMovement : MonoBehaviour {
     private CatState state;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
+    float maxDistanceToStop = 0.1f;
 
     void Start(){
         anim = GetComponent<Animator>(); 
@@ -47,9 +47,8 @@ public class CatMovement : MonoBehaviour {
         if((dogLoc - catLoc).magnitude < chaseThreshold){
             state = CatState.RunningAway;
         }
-
         //set the target location based on state
-        switch(state){
+        switch (state){
             case CatState.GotoRandomLocation:
                 if(Time.time > timeToChangeState){
                     //TODO set target to the randomly decided location
@@ -75,14 +74,14 @@ public class CatMovement : MonoBehaviour {
                     timeToChangeState = Time.time + stateChangeDelay;
                     state = CatState.GotoRandomLocation;
                 }
-                target = -(dogLoc - catLoc); 
+                target = catLoc * 2 - dogLoc; 
                 break;
         }
 
         //move towards the target location
-        float yDir = (target.y - transform.position.y);
-        float xDir = (target.x - transform.position.x);
-        rb.AddForce(target - (Vector2)transform.position);
+        //float yDir = (target.y - transform.position.y);
+        //float xDir = (target.x - transform.position.x);
+        //rb.AddForce(target - (Vector2)transform.position);
 
         UpdateAnimator();
     }
@@ -97,5 +96,15 @@ public class CatMovement : MonoBehaviour {
     private void UpdateAnimator(){
         //TODO change the cat bool flags based on it's current x and y velocity
         //query rb.velocity.x and rb.velocity.y
+        if ((target - (Vector2)transform.position).magnitude > maxDistanceToStop)
+        {
+            rb.velocity = (target - (Vector2)transform.position) * movementSpeed / (target - (Vector2)transform.position).magnitude;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+        Debug.Log(state);
+        Debug.Log(rb.velocity);
     } 
 }
