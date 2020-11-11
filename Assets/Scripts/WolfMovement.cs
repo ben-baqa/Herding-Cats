@@ -21,6 +21,7 @@ public class WolfMovement : MonoBehaviour
     private Vector2 target;
     public float stateChangeDelay;
     public float catchCooldown;
+    public float huntTime;
     public float chaseThreshold;
 
     [Header("Map Boundaries")]
@@ -51,8 +52,9 @@ public class WolfMovement : MonoBehaviour
         Vector2 catLoc = new Vector2(cat.transform.position.x, cat.transform.position.y);
         Vector2 wolfLoc = new Vector2(transform.position.x, transform.position.y);
 
-        if (Time.time > timeToCatch) {
+        if (Time.time > timeToCatch && state != WolfState.Approach) {
             state = WolfState.Approach;
+            timeToChangeState = Time.time + huntTime;
         }
 
         //set the target location based on state
@@ -79,16 +81,23 @@ public class WolfMovement : MonoBehaviour
                 break;
 
             case WolfState.Approach:
-
-                if ((catLoc - wolfLoc).magnitude < chaseThreshold && cat.GetComponent<CatMovement>().GetCatState() == CatState.Idle)
+                if ((catLoc - wolfLoc).magnitude < chaseThreshold)
                 {
-                    timeToCatch = Time.time + catchCooldown;
-                    state = WolfState.Catch;
                     target = wolfLoc;
+                    if (cat.GetComponent<CatMovement>().GetCatState() == CatState.Idle) {
+                        timeToCatch = Time.time + catchCooldown;
+                        state = WolfState.Catch;
+                    }
                 }
                 else
                 {
                     target = catLoc;
+                }
+
+                if (Time.time > timeToChangeState) {
+                    timeToCatch = Time.time + catchCooldown;
+                    timeToChangeState = Time.time + stateChangeDelay;
+                    state = WolfState.Idle;
                 }
                 break;
 
@@ -114,16 +123,24 @@ public class WolfMovement : MonoBehaviour
     private void UpdateAnimator()
     {
         Vector2 distance = target - (Vector2)transform.position;
-        if (state == WolfState.Wandering)
+        if (distance.magnitude > 0)
         {
-            rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
+            if (state == WolfState.Wandering)
+            {
+                rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
+            }
+            else if (state == WolfState.Approach)
+            {
+                rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? .8f * movementSpeed / distance.magnitude : 0);
+            }
+            else
+            {
+                rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 6.4f * movementSpeed / distance.magnitude : 0);
+            }
         }
-        else if (state == WolfState.Approach) {
-            rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? .8f * movementSpeed / distance.magnitude : 0);
+        else {
+            rb.velocity = Vector2.zero;
         }
-        else
-        {
-            rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? 6.4f * movementSpeed / distance.magnitude : 0);
-        }
+        Debug.Log($"{state}-{Time.time}-{timeToChangeState}");
     }
 }
