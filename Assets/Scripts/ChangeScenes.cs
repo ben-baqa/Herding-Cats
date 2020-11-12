@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScenes : MonoBehaviour
 {
+    public GameObject transitionObject;
     public void ChangeScene(string s)
     {
-        SceneManager.LoadScene(s);
+        Instantiate(transitionObject).GetComponent<FadeOut>().scene = s;
+        //SceneManager.LoadScene(s);
     }
 
     // ignore this please, I know this shouldn't be here
