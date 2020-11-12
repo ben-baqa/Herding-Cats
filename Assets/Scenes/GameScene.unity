@@ -405,7 +405,7 @@ MonoBehaviour:
   catLabel: {fileID: 50895554}
   timerLabel: {fileID: 1494883157}
   timeLeftLabel: {fileID: 572928303}
-  fadeOut: {fileID: 0}
+  fadeOut: {fileID: 8906369606031499003, guid: e3f8dc345ff3da0488e3310e238bb327, type: 3}
   timer: 0
   timeLeft: 300
   timeToWin: 10

@@ -52,7 +52,8 @@ public class DogMovement : MonoBehaviour
             multiplier = 1f / Mathf.Sqrt(2f);
         }
 
-        // float multiplier = 2f;
+        float animMultiplier = 1f;
+        var t = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
         rbody.velocity = new Vector2(input.x * speed.x, input.y * speed.y) * multiplier;
 
