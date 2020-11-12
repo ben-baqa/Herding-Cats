@@ -23,6 +23,7 @@ public class WolfMovement : MonoBehaviour
     public float chaseCooldown;
     public float chaseThreshold;
     public float barkingCooldown;
+    public float exitTime;
 
     [Header("Map Boundaries")]
     public Vector2 xRange;
@@ -35,6 +36,7 @@ public class WolfMovement : MonoBehaviour
     private float timeToChaseCat;
     private float timeToBark;
     private float timeToChangeState;
+    private float timeToExit;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
     private AudioSource bark;
 
@@ -68,6 +70,7 @@ public class WolfMovement : MonoBehaviour
         {
             target = GetRandomSpotOutsideCamera();
             state = WolfState.Exit;
+            timeToExit = Time.time + exitTime;
         }
 
         //set the target location based on state
@@ -113,7 +116,7 @@ public class WolfMovement : MonoBehaviour
                 break;
 
             case WolfState.Exit:
-                if ((target - wolfLoc).magnitude < 0.1f)
+                if ((target - wolfLoc).magnitude < 0.1f || Time.time > timeToExit)
                 {
                     Destroy(gameObject);
                 }
