@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WinSpot : MonoBehaviour
 {
     public GameObject catPrefab;
+    public GameObject orangeCatPrefab;
     public float catSpawnRadius = 3f;
     public int catCount = 1;
     private GameObject[] allCats;
@@ -31,7 +32,13 @@ public class WinSpot : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < catCount; i++)
         {
-            var instance = GameObject.Instantiate(catPrefab);
+            float rand = Random.Range(0f, 1f);
+            GameObject instance;
+            if (rand < 0.5f) {
+                instance = GameObject.Instantiate(catPrefab);
+            } else {
+                instance = GameObject.Instantiate(orangeCatPrefab);
+            }
             instance.transform.position = Random.insideUnitCircle * catSpawnRadius;
             var cat = instance.GetComponent<CatMovement>();
             cat.dog = player;
