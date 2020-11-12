@@ -80,13 +80,17 @@ public class WinSpot : MonoBehaviour
         // timerLabel.gameObject.SetActive(!hasWon && allCats.Length == containedCats.Count && (timer % 1.0f < 0.75f));
         // timerLabel.text = Mathf.Ceil(10f - timer) + "s";
         timerLabel.text = Mathf.Floor(timer) + "%";
-        timeLeftLabel.text = Mathf.Ceil(timeLeft) + "s Left";
+        timeLeftLabel.text = Mathf.Max(0, Mathf.Floor(timeLeft)) + "s Left";
 
         progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
 
         if(timer >= 100) {
             hasWon = true;
             Instantiate(fadeOut).GetComponent<FadeOut>().scene = "You Win";
+        }
+
+        if(timeLeft <= 0) {
+            Instantiate(fadeOut).GetComponent<FadeOut>().scene = "Game Over";
         }
     }
 }
