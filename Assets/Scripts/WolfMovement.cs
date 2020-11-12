@@ -22,6 +22,7 @@ public class WolfMovement : MonoBehaviour
     public float stateChangeDelay;
     public float chaseCooldown;
     public float chaseThreshold;
+    public float barkingCooldown;
 
     [Header("Map Boundaries")]
     public Vector2 xRange;
@@ -32,15 +33,19 @@ public class WolfMovement : MonoBehaviour
     private Rigidbody2D rb;
     private WolfState state;
     private float timeToChaseCat;
+    private float timeToBark;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
+    private AudioSource bark;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        bark = GetComponent<AudioSource>();
         state = WolfState.Wandering;
         timeToChaseCat = Time.time + chaseCooldown;
+        timeToBark = 0;
     }
 
     // Update is called once per frame
@@ -59,7 +64,13 @@ public class WolfMovement : MonoBehaviour
             timeToChangeState = Time.time + stateChangeDelay;
         }
 
-        if (hearingDogBark && state != WolfState.Exit) {
+        if (Time.time > timeToBark) {
+            bark.Play();
+            timeToBark = Time.time + barkingCooldown * Random.Range(0.5f, 2);
+        }
+
+        if (hearingDogBark && state != WolfState.Exit)
+        {
             target = GetRandomSpotOutsideCamera();
             state = WolfState.Exit;
         }
