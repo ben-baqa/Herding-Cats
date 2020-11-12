@@ -397,9 +397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73666ce02422ab944a9203228248989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerMilestone: 0
   wolfPrefab: {fileID: 3502760691116990030, guid: 19188e7ac1da8c247aee7447103dd52c,
     type: 3}
-  wolfSpawnCooldown: 0
   catPrefab: {fileID: 1264707046849380464, guid: 069ac48d6c84c43cda0ad00e50bdfc46,
     type: 3}
   orangeCatPrefab: {fileID: 2181314540889486020, guid: 0d35c5660b78d480a8b585ae8f16dee1,
@@ -1592,7 +1592,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.634
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
