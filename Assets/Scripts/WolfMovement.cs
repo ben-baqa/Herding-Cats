@@ -7,8 +7,7 @@ public enum WolfState
     Idle,
     Wandering,
     Approach,
-    Exit,
-    Disabled
+    Exit
 }
 
 public class WolfMovement : MonoBehaviour
@@ -95,11 +94,8 @@ public class WolfMovement : MonoBehaviour
                 target = new Vector2(xRange.x - 1, yRange.x - 1);
                 if ((target - wolfLoc).magnitude < 0.1f)
                 {
-                    state = WolfState.Disabled;
+                    Destroy(gameObject);
                 }
-                break;
-            case WolfState.Disabled:
-                target = wolfLoc;
                 break;
         }
         UpdateAnimator();
