@@ -7,21 +7,20 @@ public enum WolfState
     Idle,
     Wandering,
     Approach,
-    Catch
+    Exit
 }
 
 public class WolfMovement : MonoBehaviour
 {
 
     [Header("External References")]
-    public GameObject cat;
+    public GameObject dog;
 
     [Header("Movement Variables")]
     public float movementSpeed;
     private Vector2 target;
     public float stateChangeDelay;
-    public float catchCooldown;
-    public float huntTime;
+    public float chaseCooldown;
     public float chaseThreshold;
 
     [Header("Map Boundaries")]
@@ -32,7 +31,7 @@ public class WolfMovement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private WolfState state;
-    private float timeToCatch;
+    private float timeToChaseCat;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
@@ -41,7 +40,7 @@ public class WolfMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         state = WolfState.Wandering;
-        timeToCatch = Time.time + catchCooldown;
+        timeToChaseCat = Time.time + chaseCooldown;
     }
 
     // Update is called once per frame
@@ -49,13 +48,15 @@ public class WolfMovement : MonoBehaviour
     {
         //set state to running if the dog is close no matter what 
         //Magnitude calulations must be based on x/y only, not z!
-        Vector2 catLoc = new Vector2(cat.transform.position.x, cat.transform.position.y);
+        Vector2 dogLoc = new Vector2(dog.transform.position.x, dog.transform.position.y);
         Vector2 wolfLoc = new Vector2(transform.position.x, transform.position.y);
 
-        if (Time.time > timeToCatch && state != WolfState.Approach) {
-            state = WolfState.Approach;
-            timeToChangeState = Time.time + huntTime;
-        }
+        bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - wolfLoc).magnitude < chaseThreshold * 1.6f);
+
+        //if (Time.time > timeToChaseCat && state != WolfState.Approach) {
+        //    state = WolfState.Approach;
+        //    timeToChangeState = Time.time + stateChangeDelay;
+        //}
 
         //set the target location based on state
         switch (state)
@@ -81,31 +82,19 @@ public class WolfMovement : MonoBehaviour
                 break;
 
             case WolfState.Approach:
-                if ((catLoc - wolfLoc).magnitude < chaseThreshold)
+                target = Vector2.zero;
+                if (Time.time > timeToChangeState)
                 {
-                    target = wolfLoc;
-                    if (cat.GetComponent<CatMovement>().GetCatState() == CatState.Idle) {
-                        timeToCatch = Time.time + catchCooldown;
-                        state = WolfState.Catch;
-                    }
-                }
-                else
-                {
-                    target = catLoc;
-                }
-
-                if (Time.time > timeToChangeState) {
-                    timeToCatch = Time.time + catchCooldown;
+                    SetNewRandomLocation();
                     timeToChangeState = Time.time + stateChangeDelay;
-                    state = WolfState.Idle;
+                    state = WolfState.Wandering;
                 }
                 break;
-
-            case WolfState.Catch:
-                target = catLoc;
-                if ((wolfLoc - target).magnitude < .1f)
+            case WolfState.Exit:
+                target = new Vector2(xRange.x - 1, yRange.x - 1);
+                if ((target - wolfLoc).magnitude < 0.1f)
                 {
-                    state = WolfState.Idle;
+                    Destroy(gameObject);
                 }
                 break;
         }
@@ -141,6 +130,9 @@ public class WolfMovement : MonoBehaviour
         else {
             rb.velocity = Vector2.zero;
         }
-        Debug.Log($"{state}-{Time.time}-{timeToChangeState}");
+    }
+
+    public WolfState GetWolfState() {
+        return state;
     }
 }

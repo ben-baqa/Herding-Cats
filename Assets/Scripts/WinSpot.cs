@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class WinSpot : MonoBehaviour
 {
+
+    public GameObject dog;
+    public GameObject wolf;
+
     public GameObject catPrefab;
     public GameObject orangeCatPrefab;
     public GameObject stripedCatPrefab;
@@ -45,7 +49,8 @@ public class WinSpot : MonoBehaviour
             }
             instance.transform.position = Random.insideUnitCircle * catSpawnRadius;
             var cat = instance.GetComponent<CatMovement>();
-            cat.dog = player;
+            cat.dog = dog;
+            cat.wolf = wolf;
             cat.annoyingness = 1.2f - CircleProbability();
         }
         allCats = GameObject.FindGameObjectsWithTag("Cat");
@@ -89,7 +94,6 @@ public class WinSpot : MonoBehaviour
 
         if(timer >= 100) {
             hasWon = true;
-            Instantiate(fadeOut).GetComponent<FadeOut>().scene = "You Win";
         }
     }
 }
