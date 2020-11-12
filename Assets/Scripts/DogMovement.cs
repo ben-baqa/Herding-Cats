@@ -63,4 +63,8 @@ public class DogMovement : MonoBehaviour
 
         // animator.GetCurrentAnimatorClipInfo()
     }
+
+    public bool IsDogBarking() {
+        return isBarking;
+    }
 }
