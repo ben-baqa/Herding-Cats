@@ -14,6 +14,7 @@ public class WinSpot : MonoBehaviour
     public Text timerLabel;
     public Text timeLeftLabel;
     public GameObject fadeOut;
+    public GameObject progressBar;
 
     public float timer = 0f;
     public float timeLeft = 300f;
@@ -74,7 +75,9 @@ public class WinSpot : MonoBehaviour
         timerLabel.text = Mathf.Floor(timer) + "%";
         timeLeftLabel.text = Mathf.Ceil(timeLeft) + "s Left";
 
-        if(timer >= 10) {
+        progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
+
+        if(timer >= 100) {
             hasWon = true;
             Instantiate(fadeOut).GetComponent<FadeOut>().scene = "You Win";
         }
