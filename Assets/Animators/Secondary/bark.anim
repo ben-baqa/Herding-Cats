@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CatSleepRight
+  m_Name: bark
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,31 +20,28 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2405744983784237535, guid: a230354d718db4d848f42dc57d8c521b,
+      value: {fileID: -1192314979447850735, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.016666668
-      value: {fileID: 4750025396231387982, guid: a230354d718db4d848f42dc57d8c521b,
+    - time: 0.055555556
+      value: {fileID: -1407267007170532661, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.033333335
-      value: {fileID: -337228961129913236, guid: a230354d718db4d848f42dc57d8c521b,
+    - time: 0.11111111
+      value: {fileID: 2671554588998208710, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.05
-      value: {fileID: 2405744983784237535, guid: a230354d718db4d848f42dc57d8c521b,
+    - time: 0.16666667
+      value: {fileID: -8318276058108888226, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.06666667
-      value: {fileID: -2276184550457830596, guid: a230354d718db4d848f42dc57d8c521b,
+    - time: 0.22222222
+      value: {fileID: -8410112335716070023, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.083333336
-      value: {fileID: -7505976740799582467, guid: a230354d718db4d848f42dc57d8c521b,
-        type: 3}
-    - time: 0.1
-      value: {fileID: -8038473262785907081, guid: a230354d718db4d848f42dc57d8c521b,
+    - time: 0.2777778
+      value: {fileID: 6830092154683772774, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 18
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -59,19 +56,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2405744983784237535, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: 4750025396231387982, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: -337228961129913236, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: 2405744983784237535, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: -2276184550457830596, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: -7505976740799582467, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
-    - {fileID: -8038473262785907081, guid: a230354d718db4d848f42dc57d8c521b, type: 3}
+    - {fileID: -1192314979447850735, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
+    - {fileID: -1407267007170532661, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
+    - {fileID: 2671554588998208710, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
+    - {fileID: -8318276058108888226, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
+    - {fileID: -8410112335716070023, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
+    - {fileID: 6830092154683772774, guid: 0b09a0e3dfa844140a5928203a09696b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.11666667
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -90,4 +86,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.33333334
+    functionName: DesroySelf
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

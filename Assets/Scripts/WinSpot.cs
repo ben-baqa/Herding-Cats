@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WinSpot : MonoBehaviour
 {
     public GameObject catPrefab;
+    public GameObject orangeCatPrefab;
     public float catSpawnRadius = 3f;
     public int catCount = 1;
     private GameObject[] allCats;
@@ -14,6 +15,7 @@ public class WinSpot : MonoBehaviour
     public Text timerLabel;
     public Text timeLeftLabel;
     public GameObject fadeOut;
+    public GameObject progressBar;
 
     public float timer = 0f;
     public float timeLeft = 300f;
@@ -31,7 +33,13 @@ public class WinSpot : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < catCount; i++)
         {
-            var instance = GameObject.Instantiate(catPrefab);
+            float rand = Random.Range(0f, 1f);
+            GameObject instance;
+            if (rand < 0.5f) {
+                instance = GameObject.Instantiate(catPrefab);
+            } else {
+                instance = GameObject.Instantiate(orangeCatPrefab);
+            }
             instance.transform.position = Random.insideUnitCircle * catSpawnRadius;
             var cat = instance.GetComponent<CatMovement>();
             cat.dog = player;
@@ -73,6 +81,8 @@ public class WinSpot : MonoBehaviour
         // timerLabel.text = Mathf.Ceil(10f - timer) + "s";
         timerLabel.text = Mathf.Floor(timer) + "%";
         timeLeftLabel.text = Mathf.Ceil(timeLeft) + "s Left";
+
+        progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
 
         if(timer >= 100) {
             hasWon = true;
