@@ -399,6 +399,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catPrefab: {fileID: 1264707046849380464, guid: 069ac48d6c84c43cda0ad00e50bdfc46,
     type: 3}
+  orangeCatPrefab: {fileID: 2181314540889486020, guid: 0d35c5660b78d480a8b585ae8f16dee1,
+    type: 3}
+  stripedCatPrefab: {fileID: 2538400610016312821, guid: 82d86c8e331754bb587dc9c71be6178b,
+    type: 3}
   catSpawnRadius: 3
   catCount: 10
   containedCats: []
@@ -406,6 +410,7 @@ MonoBehaviour:
   timerLabel: {fileID: 1494883157}
   timeLeftLabel: {fileID: 572928303}
   fadeOut: {fileID: 8906369606031499003, guid: e3f8dc345ff3da0488e3310e238bb327, type: 3}
+  progressBar: {fileID: 0}
   timer: 0
   timeLeft: 300
   timeToWin: 10

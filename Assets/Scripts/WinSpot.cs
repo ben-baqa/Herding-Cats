@@ -7,6 +7,7 @@ public class WinSpot : MonoBehaviour
 {
     public GameObject catPrefab;
     public GameObject orangeCatPrefab;
+    public GameObject stripedCatPrefab;
     public float catSpawnRadius = 3f;
     public int catCount = 1;
     private GameObject[] allCats;
@@ -35,8 +36,10 @@ public class WinSpot : MonoBehaviour
         {
             float rand = Random.Range(0f, 1f);
             GameObject instance;
-            if (rand < 0.5f) {
+            if (rand < 0.3f) {
                 instance = GameObject.Instantiate(catPrefab);
+            } else if (rand > 0.33f && rand < 0.66f) {
+                instance = GameObject.Instantiate(stripedCatPrefab);
             } else {
                 instance = GameObject.Instantiate(orangeCatPrefab);
             }
