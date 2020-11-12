@@ -6,6 +6,7 @@
 */Assets/AssetStoreTools*
 
 Temp/
+Build/
 
 # Visual Studio cache directory
 .vs/

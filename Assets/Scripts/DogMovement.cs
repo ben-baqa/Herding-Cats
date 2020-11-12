@@ -24,6 +24,15 @@ public class DogMovement : MonoBehaviour
     IEnumerator Bark() {
         isBarking = true;
         bark.Play();
+        var offset = Vector2.zero;
+        var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if(input.y < 0 && input.x != 0) {
+            offset += Vector2.up * 0.5f;
+        }
+        if(input.y > 0) {
+            offset += Vector2.down * 0.2f;
+        }
+        GameObject dogBarkAnim = GameObject.Instantiate(dogBarkObject, rbody.position + 0.75f * dir + offset, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
         isBarking = false;
     }
@@ -37,7 +46,6 @@ public class DogMovement : MonoBehaviour
         }
 
         if(isBarking) {
-            GameObject dogBarkAnim = GameObject.Instantiate(dogBarkObject, rbody.position + 0.75f * dir, Quaternion.identity);
             rbody.velocity = Vector2.zero;
 
             // animator.SetFloat("Vertical", 0f);
