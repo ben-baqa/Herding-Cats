@@ -56,7 +56,7 @@ public class DogMovement : MonoBehaviour
         }
 
         var t = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        Debug.Log(t % 1.0f);
+        // Debug.Log(t % 1.0f);
         rbody.velocity = new Vector2(input.x * speed.x, input.y * speed.y) * multiplier * speedCurve.Evaluate(t % 1.0f);
 
         animator.SetFloat("Vertical", dir.y);
