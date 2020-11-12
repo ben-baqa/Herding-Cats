@@ -397,7 +397,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73666ce02422ab944a9203228248989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dog: {fileID: 1430998293}
+  wolf: {fileID: 1698428552}
   catPrefab: {fileID: 1264707046849380464, guid: 069ac48d6c84c43cda0ad00e50bdfc46,
+    type: 3}
+  orangeCatPrefab: {fileID: 2181314540889486020, guid: 0d35c5660b78d480a8b585ae8f16dee1,
     type: 3}
   catSpawnRadius: 3
   catCount: 10
@@ -406,6 +410,7 @@ MonoBehaviour:
   timerLabel: {fileID: 1494883157}
   timeLeftLabel: {fileID: 572928303}
   fadeOut: {fileID: 8906369606031499003, guid: e3f8dc345ff3da0488e3310e238bb327, type: 3}
+  progressBar: {fileID: 0}
   timer: 0
   timeLeft: 300
   timeToWin: 10
@@ -474,12 +479,12 @@ PrefabInstance:
     - target: {fileID: 3502760691116990028, guid: 19188e7ac1da8c247aee7447103dd52c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.18
+      value: -6.56
       objectReference: {fileID: 0}
     - target: {fileID: 3502760691116990028, guid: 19188e7ac1da8c247aee7447103dd52c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.32
+      value: 4.34
       objectReference: {fileID: 0}
     - target: {fileID: 3502760691116990028, guid: 19188e7ac1da8c247aee7447103dd52c,
         type: 3}
@@ -2019,6 +2024,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1698428552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3502760691116990030, guid: 19188e7ac1da8c247aee7447103dd52c,
+    type: 3}
+  m_PrefabInstance: {fileID: 325489498}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1757009277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 193246961692006577, guid: d0d1f9434ce8b074783b810913db5e2c,
