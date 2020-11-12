@@ -53,10 +53,16 @@ public class WolfMovement : MonoBehaviour
 
         bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - wolfLoc).magnitude < chaseThreshold * 1.6f);
 
-        //if (Time.time > timeToChaseCat && state != WolfState.Approach) {
-        //    state = WolfState.Approach;
-        //    timeToChangeState = Time.time + stateChangeDelay;
-        //}
+        if (Time.time > timeToChaseCat && state != WolfState.Approach && state != WolfState.Exit)
+        {
+            state = WolfState.Approach;
+            timeToChangeState = Time.time + stateChangeDelay;
+        }
+
+        if (hearingDogBark && state != WolfState.Exit) {
+            target = GetRandomSpotOutsideCamera();
+            state = WolfState.Exit;
+        }
 
         //set the target location based on state
         switch (state)
@@ -83,6 +89,12 @@ public class WolfMovement : MonoBehaviour
 
             case WolfState.Approach:
                 target = Vector2.zero;
+
+                if ((target - wolfLoc).magnitude < 0.1f)
+                {
+                    Destroy(gameObject);
+                }
+
                 if (Time.time > timeToChangeState)
                 {
                     SetNewRandomLocation();
@@ -90,8 +102,8 @@ public class WolfMovement : MonoBehaviour
                     state = WolfState.Wandering;
                 }
                 break;
+
             case WolfState.Exit:
-                target = new Vector2(xRange.x - 1, yRange.x - 1);
                 if ((target - wolfLoc).magnitude < 0.1f)
                 {
                     Destroy(gameObject);
@@ -130,9 +142,26 @@ public class WolfMovement : MonoBehaviour
         else {
             rb.velocity = Vector2.zero;
         }
+
+        Debug.Log(state);
+
+        anim.SetFloat("Vertical", rb.velocity.y);
+        anim.SetFloat("Horizontal", rb.velocity.x);
+        anim.SetFloat("Magnitude", rb.velocity.magnitude);
     }
 
     public WolfState GetWolfState() {
         return state;
+    }
+
+    public Vector2 GetRandomSpotOutsideCamera()
+    {
+        if (Random.value > 0.5f)
+        {
+            return new Vector2(xRange.x - 1, Random.Range(yRange.x, yRange.y));
+        }
+        else { 
+            return new Vector2(xRange.y + 1, Random.Range(yRange.x, yRange.y));
+        }
     }
 }

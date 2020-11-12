@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WinSpot : MonoBehaviour
 {
 
-    public GameObject wolfPrefab;
+    public float timerMilestone;
 
-    public float wolfSpawnCooldown;
+    public GameObject wolfPrefab;
 
     public GameObject catPrefab;
     public GameObject orangeCatPrefab;
@@ -31,15 +32,13 @@ public class WinSpot : MonoBehaviour
     public float timeToWin = 10;
     public bool hasWon = false;
 
-    private float timeToSpawnWolf;
-
     public static float CircleProbability() {
         float y = Random.Range(0f, 1f);
         return Mathf.Sqrt(1 - y * y);
     }
 
     void Start() {
-        timeToSpawnWolf = Time.time + wolfSpawnCooldown;
+        timerMilestone = 25;
         player = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < catCount; i++)
         {
@@ -89,9 +88,14 @@ public class WinSpot : MonoBehaviour
 
         progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
 
-        if (Time.time > timeToSpawnWolf && GameObject.FindGameObjectWithTag("Wolf") == null) {
-            GameObject wolf = Instantiate(wolfPrefab);
-            
+        if (timer > timerMilestone) {
+            if (GameObject.FindGameObjectWithTag("Wolf") == null)
+            {
+                GameObject wolf = Instantiate(wolfPrefab);
+                wolf.GetComponent<WolfMovement>().dog = player;
+                wolf.transform.position = wolf.GetComponent<WolfMovement>().GetRandomSpotOutsideCamera();
+            }
+            timerMilestone += 25;
         }
 
         if(timer >= 100) {
