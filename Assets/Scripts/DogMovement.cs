@@ -9,15 +9,28 @@ public class DogMovement : MonoBehaviour
     Animator animator;
     Rigidbody2D rbody;
 
+    private bool isBarking = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
-        
+    }
+
+    IEnumerator Bark() {
+        isBarking = true;
+        yield return new WaitForSeconds(0.2f);
+        isBarking = false;
     }
 
     void Update()
     {
+        if((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)) && !isBarking) {
+
+        }
+
+        if(isBarking) return;
+
         var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if(input.magnitude != 0)
