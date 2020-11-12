@@ -403,6 +403,8 @@ MonoBehaviour:
     type: 3}
   orangeCatPrefab: {fileID: 2181314540889486020, guid: 0d35c5660b78d480a8b585ae8f16dee1,
     type: 3}
+  orangeStripedCatPrefab: {fileID: 6700204048030754332, guid: 883829b0e1dae4479a382894b7cb462d,
+    type: 3}
   stripedCatPrefab: {fileID: 2538400610016312821, guid: 82d86c8e331754bb587dc9c71be6178b,
     type: 3}
   catSpawnRadius: 3
