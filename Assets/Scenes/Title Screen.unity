@@ -2019,7 +2019,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Credits:\nAnimation Engineer - Bernie Mayer\nArt + Code - Mark Kaldas
     \nArt + Animation - Benjamin Nielsen\nCode - Nguyen Ba Khanh Tung\nMusic - Eric
-    Halina"
+    Halina\nSound from Soundbible.com"
 --- !u!222 &2075455534
 CanvasRenderer:
   m_ObjectHideFlags: 0
