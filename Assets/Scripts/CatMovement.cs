@@ -55,7 +55,9 @@ public class CatMovement : MonoBehaviour
         //Magnitude calulations must be based on x/y only, not z!
         Vector2 dogLoc = new Vector2(dog.transform.position.x, dog.transform.position.y);
         Vector2 catLoc = new Vector2(transform.position.x, transform.position.y);
-        if ((dogLoc - catLoc).magnitude < chaseThreshold)
+
+        bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - catLoc).magnitude < chaseThreshold * 1.6f);
+        if ((dogLoc - catLoc).magnitude < chaseThreshold || hearingDogBark)
         {
             state = CatState.RunningAway;
         }
@@ -86,7 +88,7 @@ public class CatMovement : MonoBehaviour
 
             case CatState.RunningAway:
                 //if the cat is far enough away from teh dog, stop running and wander-
-                if ((dogLoc - catLoc).magnitude > chaseThreshold)
+                if ((dogLoc - catLoc).magnitude > chaseThreshold && !hearingDogBark)
                 {
                     // SetNewRandomLocation();
                     AdjustTime();
