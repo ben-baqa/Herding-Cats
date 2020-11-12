@@ -78,12 +78,20 @@ public class WinSpot : MonoBehaviour
         if(hasWon) return;
         timeLeft -= Time.deltaTime;
 
-        timer += Time.deltaTime * (1f / Mathf.Pow(2, allCats.Length - containedCats.Count));
+        float speed = (1f / Mathf.Pow(2, allCats.Length - containedCats.Count));
+        timer += Time.deltaTime * speed;
 
+        catLabel.text = containedCats.Count + " / " + allCats.Length + " Cats Herded";
 
-        catLabel.text = containedCats.Count + " / " + allCats.Length;
+        string arrows = "";
+        if(speed > 0.1f)
+            arrows = " >";
+        if(speed > 0.25f)
+            arrows = " >>";
+        if(speed > 0.75f)
+            arrows = " >>>";
 
-        timerLabel.text = Mathf.Floor(timer) + "%";
+        timerLabel.text = Mathf.Floor(timer) + "%" + arrows;
         timeLeftLabel.text = Mathf.Max(0, Mathf.Floor(timeLeft)) + "s Left";
 
         progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
@@ -100,6 +108,7 @@ public class WinSpot : MonoBehaviour
 
         if(timer >= 100) {
             hasWon = true;
+            Instantiate(fadeOut).GetComponent<FadeOut>().scene = "You Win";
         }
 
         if(timeLeft <= 0) {

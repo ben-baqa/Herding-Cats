@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SeveredFate : MonoBehaviour
 {
+    public GameObject fadeOut;
     public RawImage severedFate;
     public bool hasDestroyedTimeline = false;
     private float timer = 0f;
@@ -21,5 +22,8 @@ public class SeveredFate : MonoBehaviour
         if(!hasDestroyedTimeline) return;
         timer += Time.deltaTime;
         severedFate.color = Color.Lerp(new Color(1f, 1f, 1f, 0.0f), new Color(1f, 1f, 1f, 1f), Mathf.Clamp01(timer / 5f));
+        if(timer > 10.0f) {
+            Instantiate(fadeOut).GetComponent<FadeOut>().scene = "Game Over";
+        }
     }
 }

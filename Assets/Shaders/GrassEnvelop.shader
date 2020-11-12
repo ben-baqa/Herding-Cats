@@ -69,7 +69,7 @@ Shader "Mark/Grass Envelop"{
                 // float2 uv = i.uv;
                 // float magnitude =  tex2D(_WaveMap, i.uv + float2(noise * 0.02, 0)).r;
                 // uv.x += noise * 0.02 * magnitude;
-				// col *= i.color;
+				col *= i.color;
 				return col;
                 // return float4(hasGrass, hasGrass, hasGrass, 1.0);
 			}

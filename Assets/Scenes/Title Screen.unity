@@ -2006,7 +2006,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a38efee33e743f44e9be4a0d18d4bbb5, type: 2}
-    m_FontSize: 64
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -2017,8 +2017,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Credits:\nBernard Mayer\nMark Kaldas \nBenjamin Nielsen\nNguyen Ba Khanh
-    Tung"
+  m_Text: "Credits:\nAnimation Engineer - Bernie\nArt + Code - Mark Kaldas \nArt
+    + Animation - Benjamin Nielsen\nCode - Nguyen Ba Khanh Tung\nMusic - Eric Halina"
 --- !u!222 &2075455534
 CanvasRenderer:
   m_ObjectHideFlags: 0

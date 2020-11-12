@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DogMovement : MonoBehaviour
 {
+    public AnimationCurve speedCurve;
     private AudioSource bark;
     public Vector2 speed = new Vector2(5, 3.5f);
     private Vector2 dir = new Vector2(-1, 0);
@@ -52,10 +53,9 @@ public class DogMovement : MonoBehaviour
             multiplier = 1f / Mathf.Sqrt(2f);
         }
 
-        float animMultiplier = 1f;
         var t = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-
-        rbody.velocity = new Vector2(input.x * speed.x, input.y * speed.y) * multiplier;
+        Debug.Log(t % 1.0f);
+        rbody.velocity = new Vector2(input.x * speed.x, input.y * speed.y) * multiplier * speedCurve.Evaluate(t % 1.0f);
 
         animator.SetFloat("Vertical", dir.y);
         animator.SetFloat("Horizontal", dir.x);
