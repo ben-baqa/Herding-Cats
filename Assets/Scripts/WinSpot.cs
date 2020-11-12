@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WinSpot : MonoBehaviour
 {
+
+    public float timerMilestone;
+
+    public GameObject wolfPrefab;
+
     public GameObject catPrefab;
     public GameObject orangeCatPrefab;
+    public GameObject orangeStripedCatPrefab;
+    public GameObject stripedCatPrefab;
     public float catSpawnRadius = 3f;
     public int catCount = 1;
     private GameObject[] allCats;
@@ -30,13 +38,18 @@ public class WinSpot : MonoBehaviour
     }
 
     void Start() {
+        timerMilestone = 25;
         player = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < catCount; i++)
         {
             float rand = Random.Range(0f, 1f);
             GameObject instance;
-            if (rand < 0.5f) {
+            if (rand < 0.3f) {
                 instance = GameObject.Instantiate(catPrefab);
+            } else if (rand > 0.25f && rand <= 0.50f) {
+                instance = GameObject.Instantiate(stripedCatPrefab);
+            } else if (rand > 0.5f && rand < 0.75f) {
+                instance = GameObject.Instantiate(orangeStripedCatPrefab);
             } else {
                 instance = GameObject.Instantiate(orangeCatPrefab);
             }
@@ -64,25 +77,26 @@ public class WinSpot : MonoBehaviour
     void Update() {
         if(hasWon) return;
         timeLeft -= Time.deltaTime;
-        // if(!hasWon && allCats.Length == containedCats.Count) {
+
         timer += Time.deltaTime * (1f / Mathf.Pow(2, allCats.Length - containedCats.Count));
 
-            // if(timer >= timeToWin) {
-            //     hasWon = true;
-            // }
-        // }
-        // else {
-        //     timer = 0f;
-        // }
 
         catLabel.text = containedCats.Count + " / " + allCats.Length;
 
-        // timerLabel.gameObject.SetActive(!hasWon && allCats.Length == containedCats.Count && (timer % 1.0f < 0.75f));
-        // timerLabel.text = Mathf.Ceil(10f - timer) + "s";
         timerLabel.text = Mathf.Floor(timer) + "%";
         timeLeftLabel.text = Mathf.Max(0, Mathf.Floor(timeLeft)) + "s Left";
 
         progressBar.transform.localScale = new Vector2(timer * 1.28f, 1);
+
+        if (timer > timerMilestone) {
+            if (GameObject.FindGameObjectWithTag("Wolf") == null)
+            {
+                GameObject wolf = Instantiate(wolfPrefab);
+                wolf.GetComponent<WolfMovement>().dog = player;
+                wolf.transform.position = wolf.GetComponent<WolfMovement>().GetRandomSpotOutsideCamera();
+            }
+            timerMilestone += 25;
+        }
 
         if(timer >= 100) {
             hasWon = true;
