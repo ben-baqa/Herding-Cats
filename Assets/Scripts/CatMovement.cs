@@ -15,7 +15,7 @@ public class CatMovement : MonoBehaviour
 
     [Header("External References")]
     public GameObject dog;
-    public GameObject wolf;
+    private GameObject wolf;
 
     [Header("Movement Variables")]
     public float movementSpeed;
@@ -44,6 +44,7 @@ public class CatMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         state = CatState.Walk;
+        wolf = null;
     }
 
     void AdjustTime() {
@@ -56,7 +57,7 @@ public class CatMovement : MonoBehaviour
         //set state to running if the dog is close no matter what 
         //Magnitude calulations must be based on x/y only, not z!
         Vector2 dogLoc = new Vector2(dog.transform.position.x, dog.transform.position.y);
-        Vector2 wolfLoc = new Vector2(wolf.transform.position.x, wolf.transform.position.y);
+        Vector2 wolfLoc;
         Vector2 catLoc = new Vector2(transform.position.x, transform.position.y);
 
         bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - catLoc).magnitude < chaseThreshold * 1.6f);
@@ -64,8 +65,16 @@ public class CatMovement : MonoBehaviour
         {
             state = CatState.ScaredByDog;
         }
-        if (((wolfLoc - catLoc).magnitude < chaseThreshold) && state != CatState.ScaredByDog) {
-            state = CatState.ScaredByWolf;
+        if (wolf != null)
+        {
+            wolfLoc = new Vector2(wolf.transform.position.x, wolf.transform.position.y);
+            if (((wolfLoc - catLoc).magnitude < chaseThreshold) && state != CatState.ScaredByDog)
+            {
+                state = CatState.ScaredByWolf;
+            }
+        }
+        else {
+            wolfLoc = Vector2.zero;
         }
         //set the target location based on state
         switch (state)
@@ -110,7 +119,9 @@ public class CatMovement : MonoBehaviour
                 target = catLoc + (catLoc - wolfLoc) * movementSpeed / (catLoc - wolfLoc).magnitude;
                 break;
         }
-        Debug.Log(wolf.GetComponent<WolfMovement>().GetWolfState());
+        if (wolf == null) {
+            CheckWolf();
+        }
         UpdateAnimator();
     }
 
@@ -163,5 +174,11 @@ public class CatMovement : MonoBehaviour
         }
 
         anim.SetFloat("Magnitude", rb.velocity.magnitude);
+    }
+
+    public void CheckWolf() {
+        if (GameObject.FindGameObjectWithTag("Wolf") != null) {
+            wolf = GameObject.FindGameObjectWithTag("Wolf");
+        }
     }
 }
