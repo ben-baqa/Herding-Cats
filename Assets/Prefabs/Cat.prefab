@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010d77ea5d415d342bc265aca2be0d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dog: {fileID: 0}
+  dog: {fileID: 8253018475750847840, guid: 4dd702e0cc20d409f857cc5310296d7d, type: 3}
+  wolf: {fileID: 3502760691116990030, guid: 19188e7ac1da8c247aee7447103dd52c, type: 3}
   movementSpeed: 1
   stateChangeDelay: 3
   chaseThreshold: 2

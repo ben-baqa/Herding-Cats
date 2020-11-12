@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54a0501db810ae4faa0d8667c6a419d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cat: {fileID: 0}
   movementSpeed: 2
   stateChangeDelay: 2
-  catchCooldown: 10
+  chaseCooldown: 0
   chaseThreshold: 3
-  xRange: {x: -12, y: 12}
-  yRange: {x: -5, y: 5}
+  xRange: {x: -5.75, y: 5.75}
+  yRange: {x: -3.75, y: 3.75}
 --- !u!212 &3502760691116990027
 SpriteRenderer:
   m_ObjectHideFlags: 0
