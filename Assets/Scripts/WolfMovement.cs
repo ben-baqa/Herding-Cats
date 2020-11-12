@@ -143,8 +143,6 @@ public class WolfMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        Debug.Log(state);
-
         anim.SetFloat("Vertical", rb.velocity.y);
         anim.SetFloat("Horizontal", rb.velocity.x);
         anim.SetFloat("Magnitude", rb.velocity.magnitude);
