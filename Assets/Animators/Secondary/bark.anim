@@ -22,26 +22,26 @@ AnimationClip:
     - time: 0
       value: {fileID: -1192314979447850735, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.055555556
+    - time: 0.041666668
       value: {fileID: -1407267007170532661, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.11111111
+    - time: 0.083333336
       value: {fileID: 2671554588998208710, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.16666667
+    - time: 0.125
       value: {fileID: -8318276058108888226, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.22222222
+    - time: 0.16666667
       value: {fileID: -8410112335716070023, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
-    - time: 0.2777778
+    - time: 0.20833333
       value: {fileID: 6830092154683772774, guid: 0b09a0e3dfa844140a5928203a09696b,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 18
+  m_SampleRate: 24
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,7 +87,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.33333334
+  - time: 0.25
     functionName: DesroySelf
     data: 
     objectReferenceParameter: {fileID: 0}

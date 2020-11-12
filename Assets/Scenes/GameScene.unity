@@ -1236,6 +1236,12 @@ PrefabInstance:
       propertyPath: speedCurve.m_Curve.Array.data[3].inWeight
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 8253018475750847842, guid: 4dd702e0cc20d409f857cc5310296d7d,
+        type: 3}
+      propertyPath: dogBarkObject
+      value: 
+      objectReference: {fileID: 7411286747349206436, guid: a889582c90c8a8a439c3a47a7009c06b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dd702e0cc20d409f857cc5310296d7d, type: 3}
 --- !u!1 &847699534

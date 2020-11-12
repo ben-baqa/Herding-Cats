@@ -5,6 +5,7 @@ using UnityEngine;
 public class DogMovement : MonoBehaviour
 {
     public AnimationCurve speedCurve;
+    public GameObject dogBarkObject;
     private AudioSource bark;
     public Vector2 speed = new Vector2(5, 3.5f);
     private Vector2 dir = new Vector2(-1, 0);
@@ -29,11 +30,14 @@ public class DogMovement : MonoBehaviour
 
     void Update()
     {
+
+        var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)) && !isBarking) {
             StartCoroutine(Bark());
         }
 
         if(isBarking) {
+            GameObject dogBarkAnim = GameObject.Instantiate(dogBarkObject, rbody.position + 0.75f * dir, Quaternion.identity);
             rbody.velocity = Vector2.zero;
 
             // animator.SetFloat("Vertical", 0f);
@@ -42,8 +46,6 @@ public class DogMovement : MonoBehaviour
             
             return;
         }
-
-        var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if(input.magnitude != 0)
             dir = input;
