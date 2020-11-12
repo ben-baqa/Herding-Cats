@@ -86,7 +86,6 @@ public class WinSpot : MonoBehaviour
 
         if(timer >= 100) {
             hasWon = true;
-            Instantiate(fadeOut).GetComponent<FadeOut>().scene = "You Win";
         }
     }
 }

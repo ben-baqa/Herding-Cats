@@ -6,7 +6,8 @@ public enum CatState
 {
     Idle,
     Walk,
-    RunningAway
+    ScaredByDog,
+    ScaredByWolf
 }
 
 public class CatMovement : MonoBehaviour
@@ -14,6 +15,7 @@ public class CatMovement : MonoBehaviour
 
     [Header("External References")]
     public GameObject dog;
+    public GameObject wolf;
 
     [Header("Movement Variables")]
     public float movementSpeed;
@@ -33,7 +35,7 @@ public class CatMovement : MonoBehaviour
     //Internal References/Variables
     private Animator anim;
     private Rigidbody2D rb;
-    private CatState state;
+    public CatState state;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
@@ -54,12 +56,16 @@ public class CatMovement : MonoBehaviour
         //set state to running if the dog is close no matter what 
         //Magnitude calulations must be based on x/y only, not z!
         Vector2 dogLoc = new Vector2(dog.transform.position.x, dog.transform.position.y);
+        Vector2 wolfLoc = new Vector2(wolf.transform.position.x, wolf.transform.position.y);
         Vector2 catLoc = new Vector2(transform.position.x, transform.position.y);
 
         bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - catLoc).magnitude < chaseThreshold * 1.6f);
-        if ((dogLoc - catLoc).magnitude < chaseThreshold || hearingDogBark)
+        if (((dogLoc - catLoc).magnitude < chaseThreshold || hearingDogBark) && state != CatState.ScaredByWolf)
         {
-            state = CatState.RunningAway;
+            state = CatState.ScaredByDog;
+        }
+        if (((wolfLoc - catLoc).magnitude < chaseThreshold) && state != CatState.ScaredByDog) {
+            state = CatState.ScaredByWolf;
         }
         //set the target location based on state
         switch (state)
@@ -86,7 +92,7 @@ public class CatMovement : MonoBehaviour
                 }
                 break;
 
-            case CatState.RunningAway:
+            case CatState.ScaredByDog:
                 //if the cat is far enough away from teh dog, stop running and wander-
                 if ((dogLoc - catLoc).magnitude > chaseThreshold && !hearingDogBark)
                 {
@@ -96,7 +102,15 @@ public class CatMovement : MonoBehaviour
                 }
                 target = catLoc + (catLoc - dogLoc) * movementSpeed / (catLoc - dogLoc).magnitude;
                 break;
+            case CatState.ScaredByWolf:
+                if ((wolfLoc - catLoc).magnitude > chaseThreshold) {
+                    AdjustTime();
+                    state = CatState.Idle;
+                }
+                target = catLoc + (catLoc - wolfLoc) * movementSpeed / (catLoc - wolfLoc).magnitude;
+                break;
         }
+        Debug.Log(wolf.GetComponent<WolfMovement>().GetWolfState());
         UpdateAnimator();
     }
 
@@ -140,15 +154,14 @@ public class CatMovement : MonoBehaviour
             case CatState.Walk:
                 anim.SetFloat("SpeedMult", 0.3f);
                 break;
-            case CatState.RunningAway:
+            case CatState.ScaredByDog:
+                anim.SetFloat("SpeedMult", 0.5f);
+                break;
+            case CatState.ScaredByWolf:
                 anim.SetFloat("SpeedMult", 0.5f);
                 break;
         }
 
         anim.SetFloat("Magnitude", rb.velocity.magnitude);
-    }
-
-    public CatState GetCatState() {
-        return state;
     }
 }
