@@ -53,6 +53,7 @@ MonoBehaviour:
   chaseCooldown: 6
   chaseThreshold: 3
   barkingCooldown: 2
+  exitTime: 2
   xRange: {x: -5.75, y: 5.75}
   yRange: {x: -3.75, y: 3.75}
 --- !u!212 &3502760691116990027
