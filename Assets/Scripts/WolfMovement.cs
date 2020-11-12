@@ -64,11 +64,6 @@ public class WolfMovement : MonoBehaviour
             timeToChangeState = Time.time + stateChangeDelay;
         }
 
-        if (Time.time > timeToBark) {
-            bark.Play();
-            timeToBark = Time.time + barkingCooldown * Random.Range(0.5f, 2);
-        }
-
         if (hearingDogBark && state != WolfState.Exit)
         {
             target = GetRandomSpotOutsideCamera();
@@ -86,6 +81,7 @@ public class WolfMovement : MonoBehaviour
                     timeToChangeState = Time.time + stateChangeDelay;
                     state = WolfState.Idle;
                 }
+                Bark();
                 break;
 
             case WolfState.Idle:
@@ -96,6 +92,7 @@ public class WolfMovement : MonoBehaviour
                     timeToChangeState = Time.time + stateChangeDelay;
                     state = WolfState.Wandering;
                 }
+                Bark();
                 break;
 
             case WolfState.Approach:
@@ -112,6 +109,7 @@ public class WolfMovement : MonoBehaviour
                     timeToChangeState = Time.time + stateChangeDelay;
                     state = WolfState.Wandering;
                 }
+                Bark();
                 break;
 
             case WolfState.Exit:
@@ -122,6 +120,15 @@ public class WolfMovement : MonoBehaviour
                 break;
         }
         UpdateAnimator();
+    }
+
+    private void Bark()
+    {
+        if (Time.time > timeToBark)
+        {
+            bark.Play();
+            timeToBark = Time.time + barkingCooldown * Random.Range(0.5f, 2);
+        }
     }
 
     private void SetNewRandomLocation()
