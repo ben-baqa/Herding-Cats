@@ -13,6 +13,7 @@ public class WinSpot : MonoBehaviour
     public Text catLabel;
     public Text timerLabel;
     public Text timeLeftLabel;
+    public GameObject fadeOut;
 
     public float timer = 0f;
     public float timeLeft = 300f;
