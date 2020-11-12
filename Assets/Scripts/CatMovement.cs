@@ -39,6 +39,8 @@ public class CatMovement : MonoBehaviour
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
+    private Vector2 animationVector = new Vector2(0.0f, 0.0f);
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -105,7 +107,7 @@ public class CatMovement : MonoBehaviour
                 //if the cat is far enough away from teh dog, stop running and wander-
                 if ((dogLoc - catLoc).magnitude > chaseThreshold && !hearingDogBark)
                 {
-                    // SetNewRandomLocation();
+                    //SetNewRandomLocation();
                     AdjustTime();
                     state = CatState.Idle;
                 }
@@ -138,10 +140,11 @@ public class CatMovement : MonoBehaviour
         //TODO change the cat bool flags based on it's current x and y velocity
         //query rb.velocity.x and rb.velocity.y
         Vector2 distance = target - (Vector2)transform.position;
+        animationVector = Vector2.Lerp(animationVector, rb.velocity, 2f * Time.deltaTime);
         if (distance.magnitude > 0)
         {
-            anim.SetFloat("Vertical", rb.velocity.y);
-            anim.SetFloat("Horizontal", rb.velocity.x);
+            anim.SetFloat("Vertical", animationVector.y);
+            anim.SetFloat("Horizontal", animationVector.x);
             if (state == CatState.Walk)
             {
                 rb.velocity = distance * (distance.magnitude > movementSpeed / 10 ? movementSpeed / distance.magnitude : 0);
