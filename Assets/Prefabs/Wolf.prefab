@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54a0501db810ae4faa0d8667c6a419d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dog: {fileID: 8253018475750847840, guid: 4dd702e0cc20d409f857cc5310296d7d, type: 3}
   movementSpeed: 2
   stateChangeDelay: 2
-  chaseCooldown: 0
+  chaseCooldown: 6
   chaseThreshold: 3
   xRange: {x: -5.75, y: 5.75}
   yRange: {x: -3.75, y: 3.75}

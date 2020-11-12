@@ -35,7 +35,7 @@ public class CatMovement : MonoBehaviour
     //Internal References/Variables
     private Animator anim;
     private Rigidbody2D rb;
-    private CatState state;
+    public CatState state;
     private float timeToChangeState;
     private Vector2 currentRandomTarget; //this is set each time the cat exits idle mode
 
@@ -110,6 +110,7 @@ public class CatMovement : MonoBehaviour
                 target = catLoc + (catLoc - wolfLoc) * movementSpeed / (catLoc - wolfLoc).magnitude;
                 break;
         }
+        Debug.Log(wolf.GetComponent<WolfMovement>().GetWolfState());
         UpdateAnimator();
     }
 

@@ -54,10 +54,10 @@ public class WolfMovement : MonoBehaviour
 
         bool hearingDogBark = (dog.GetComponent<DogMovement>().IsDogBarking() && (dogLoc - wolfLoc).magnitude < chaseThreshold * 1.6f);
 
-        if (Time.time > timeToChaseCat && state != WolfState.Approach) {
-            state = WolfState.Approach;
-            timeToChangeState = Time.time + stateChangeDelay;
-        }
+        //if (Time.time > timeToChaseCat && state != WolfState.Approach) {
+        //    state = WolfState.Approach;
+        //    timeToChangeState = Time.time + stateChangeDelay;
+        //}
 
         //set the target location based on state
         switch (state)
