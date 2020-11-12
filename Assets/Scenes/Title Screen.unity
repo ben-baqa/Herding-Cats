@@ -2017,7 +2017,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Credits:\nBernard Mayer\nMark \nBenjamin Nielsen\nTu'ung"
+  m_Text: "Credits:\nBernard Mayer\nMark Kaldas \nBenjamin Nielsen\nNguyen Ba Khanh
+    Tung"
 --- !u!222 &2075455534
 CanvasRenderer:
   m_ObjectHideFlags: 0
